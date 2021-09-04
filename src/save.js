@@ -24,15 +24,18 @@ import {TextareaControl} from '@wordpress/components';
  * @return {WPElement} Element to render.
  */
 export default function save({attributes}) {
-	const {imageCards} = attributes;
+	const {headline, imageCards} = attributes;
 	return (
 			<div {...useBlockProps.save()} className="block-container">
+				<div>
+					{imageCards && imageCards.length ?
+							<h4 className="headline">{headline}</h4> : false}
+				</div>
 				<div className="image-cards">
 					{imageCards.map((imageCard) => {
 						const {
-							id,
 							url,
-							imageHeading = 'This is a Headline on an Image Card',
+							imageHeadline = 'This is a Headline on an Image Card',
 							teaser = 'Here\'s a short teaser of something that would make the user want to click the button',
 							buttonText = 'CTA Button',
 							buttonLink
@@ -43,10 +46,21 @@ export default function save({attributes}) {
 									<div className="image-content">
 										<img src={url}/>
 										<div className="overlay">
-											<div className="image-heading"><span>{imageHeading}</span></div>
+											<div className="image-headline"><span>{imageHeadline}</span></div>
 										</div>
 									</div>
-									<p>{teaser}</p>
+									<p className="teaser">{teaser}</p>
+									<div>
+										<a href={buttonLink} className="custom-button action-button">
+											{buttonText}
+											<div className="svg-icon">
+												<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+													<path id="svg-path"
+																d="M256 64l-34.82 35.1L353.2 231.39H63.96v49.98H352.2L221.18 412.9 256 448l192-192L256 64z"/>
+												</svg>
+											</div>
+										</a>
+									</div>
 								</div>
 						)
 					})}

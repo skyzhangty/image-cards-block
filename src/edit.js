@@ -20,7 +20,6 @@ import {useBlockProps} from '@wordpress/block-editor';
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
 import './editor.scss';
-import {Button, TextareaControl} from '@wordpress/components';
 
 /**
  * The edit function describes the structure of your block in the context of the
@@ -37,7 +36,7 @@ export default function Edit({attributes, setAttributes}) {
 		const {
 			id,
 			url,
-			imageHeading = 'This is a Headline on an Image Card',
+			imageHeadline = 'This is a Headline on an Image Card',
 			teaser = 'Here\'s a short teaser of something that would make the user want to click the button',
 			buttonText = 'CTA Button',
 			buttonLink
@@ -61,8 +60,8 @@ export default function Edit({attributes, setAttributes}) {
 					<div className="image-content">
 						<img src={url}/>
 						<div className="overlay">
-							<textarea value={imageHeading}
-												onChange={(event) => updateImageCard(imageCard, 'imageHeading', event.target.value)}/>
+							<textarea value={imageHeadline}
+												onChange={(event) => updateImageCard(imageCard, 'imageHeadline', event.target.value)}/>
 						</div>
 					</div>
 					<div>

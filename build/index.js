@@ -20,8 +20,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./editor.scss */ "./src/editor.scss");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__);
 
 
 
@@ -47,7 +45,6 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 
-
 /**
  * The edit function describes the structure of your block in the context of the
  * editor. This represents what the editor will render when the block is used.
@@ -70,7 +67,7 @@ function Edit({
     const {
       id,
       url,
-      imageHeading = 'This is a Headline on an Image Card',
+      imageHeadline = 'This is a Headline on an Image Card',
       teaser = 'Here\'s a short teaser of something that would make the user want to click the button',
       buttonText = 'CTA Button',
       buttonLink
@@ -97,8 +94,8 @@ function Edit({
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
       className: "overlay"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("textarea", {
-      value: imageHeading,
-      onChange: event => updateImageCard(imageCard, 'imageHeading', event.target.value)
+      value: imageHeadline,
+      onChange: event => updateImageCard(imageCard, 'imageHeadline', event.target.value)
     }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("textarea", {
       value: teaser,
       style: {
@@ -280,17 +277,19 @@ function save({
   attributes
 }) {
   const {
+    headline,
     imageCards
   } = attributes;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__.default)({}, _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps.save(), {
     className: "block-container"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", null, imageCards && imageCards.length ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("h4", {
+    className: "headline"
+  }, headline) : false), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
     className: "image-cards"
   }, imageCards.map(imageCard => {
     const {
-      id,
       url,
-      imageHeading = 'This is a Headline on an Image Card',
+      imageHeadline = 'This is a Headline on an Image Card',
       teaser = 'Here\'s a short teaser of something that would make the user want to click the button',
       buttonText = 'CTA Button',
       buttonLink
@@ -302,8 +301,21 @@ function save({
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
       className: "overlay"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-      className: "image-heading"
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("span", null, imageHeading)))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("p", null, teaser));
+      className: "image-headline"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("span", null, imageHeadline)))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("p", {
+      className: "teaser"
+    }, teaser), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("a", {
+      href: buttonLink,
+      className: "custom-button action-button"
+    }, buttonText, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+      className: "svg-icon"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("svg", {
+      xmlns: "http://www.w3.org/2000/svg",
+      viewBox: "0 0 512 512"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("path", {
+      id: "svg-path",
+      d: "M256 64l-34.82 35.1L353.2 231.39H63.96v49.98H352.2L221.18 412.9 256 448l192-192L256 64z"
+    }))))));
   })));
 }
 

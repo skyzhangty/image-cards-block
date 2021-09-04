@@ -42,43 +42,48 @@
 .image-content img {
   display: block;
   width: 100%;
-  height: 400px;
-  -o-object-fit: scale-down;
-     object-fit: scale-down;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
   margin-bottom: 10px;
 }
 
 .image-content textarea {
   font-size: 2rem;
+  width: 100%;
+  margin: 3px -1px;
+  padding: 0;
 }
 
-.image-heading {
+.image-headline {
   text-align: left;
 }
 
-.image-heading span {
-  font-size: 1rem;
+.image-headline span {
   background-color: #CC0000;
   color: white;
+  padding-left: 10px;
+  padding-right: 5px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
 .overlay {
   position: absolute;
-  top: 50%;
-  right: 3rem;
-  left: 1rem;
-  transform: translateY(-50%);
+  top: 10%;
+  left: 0;
+  right: 3em;
 }
 
 .custom-button {
   background-color: white;
   border: none;
   color: #CC0000 !important;
-  padding: 15px 32px;
+  padding: 1% 5%;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: bold;
 }
 
@@ -92,7 +97,7 @@
 }
 
 .action-button {
-  margin: auto 3em;
+  margin: auto 1%;
   display: block;
 }
 
@@ -110,6 +115,14 @@
   height: 1em;
   width: 1em;
   fill: #CC0000;
+}
+
+.teaser {
+  font-size: 0.8rem;
+  text-align: center;
+  line-height: 150%;
+  color: gray;
+  margin-bottom: 10%;
 }
 
 /*# sourceMappingURL=style-index.css.map*/

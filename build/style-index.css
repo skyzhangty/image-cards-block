@@ -20,7 +20,7 @@
   -ms-grid-columns: 1fr 1fr 1fr;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 10px;
-  padding: 10px;
+  padding: 10px 0px;
 }
 
 @media (max-width: 992px) {
@@ -29,6 +29,12 @@
     grid-template-columns: auto;
   }
 }
+.headline {
+  width: 100%;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
 .image-content {
   position: relative;
 }
@@ -39,6 +45,7 @@
   height: 400px;
   -o-object-fit: scale-down;
      object-fit: scale-down;
+  margin-bottom: 10px;
 }
 
 .image-content textarea {

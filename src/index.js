@@ -36,9 +36,16 @@ registerBlockType( 'create-block/imagecards', {
 	 */
 	save,
 	attributes: {
+		headline: {
+			type: 'string',
+			default: 'I\'M AN IMAGE CARDS BLOCK HEADLINE',
+		},
 		imageCards: {
 			type: 'array',
 			default: [],
 		}
-	}
+	},
+	supports: {
+		multiple: false,
+	},
 } );

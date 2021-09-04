@@ -62,6 +62,7 @@ function Edit({
   setAttributes
 }) {
   const {
+    headline,
     imageCards
   } = attributes;
 
@@ -76,7 +77,7 @@ function Edit({
     } = imageCard;
 
     const updateImageCard = (imageCard, imageCardAttr, value) => {
-      setAttributes({
+      setAttributes({ ...attributes,
         imageCards: imageCards.map(imageCard => {
           if (imageCard.id === id) {
             return { ...imageCard,
@@ -117,15 +118,25 @@ function Edit({
       d: "M256 64l-34.82 35.1L353.2 231.39H63.96v49.98H352.2L221.18 412.9 256 448l192-192L256 64z"
     })))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("label", null, "Button Text: "), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("input", {
       type: "text",
+      value: buttonText,
       onChange: event => updateImageCard(imageCard, 'buttonText', event.target.value)
     })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("label", null, "Button Link: "), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("input", {
-      type: "text"
+      type: "text",
+      value: buttonLink,
+      onChange: event => updateImageCard(imageCard, 'buttonLink', event.target.value)
     }))));
   };
 
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("p", (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__.default)({}, (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps)(), {
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__.default)({}, (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps)(), {
     className: "block-container"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", null, imageCards && imageCards.length ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("input", {
+    className: "headline",
+    type: "text",
+    value: headline,
+    onChange: event => setAttributes({ ...attributes,
+      headline: event.target.value
+    })
+  }) : false), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
     className: "image-cards"
   }, imageCards.map(createImageCard(setAttributes))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("input", {
     type: "file",
@@ -137,7 +148,7 @@ function Edit({
     onChange: event => {
       event.preventDefault();
       const image = event.target.files[0];
-      setAttributes({
+      setAttributes({ ...attributes,
         imageCards: [...imageCards, {
           id: imageCards.length + 1,
           url: URL.createObjectURL(image)
@@ -202,10 +213,17 @@ __webpack_require__.r(__webpack_exports__);
    */
   save: _save__WEBPACK_IMPORTED_MODULE_3__.default,
   attributes: {
+    headline: {
+      type: 'string',
+      default: 'I\'M AN IMAGE CARDS BLOCK HEADLINE'
+    },
     imageCards: {
       type: 'array',
       default: []
     }
+  },
+  supports: {
+    multiple: false
   }
 });
 

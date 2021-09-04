@@ -31,7 +31,7 @@ import {Button, TextareaControl} from '@wordpress/components';
  * @return {WPElement} Element to render.
  */
 export default function Edit({attributes, setAttributes}) {
-	const {imageCards} = attributes;
+	const {headline, imageCards} = attributes;
 
 	const createImageCard = (setAttributes) => (imageCard) => {
 		const {
@@ -45,6 +45,7 @@ export default function Edit({attributes, setAttributes}) {
 
 		const updateImageCard = (imageCard, imageCardAttr, value) => {
 			setAttributes({
+				...attributes,
 				imageCards: imageCards.map((imageCard) => {
 					if (imageCard.id === id) {
 						return {...imageCard, [imageCardAttr]: value};
@@ -80,11 +81,13 @@ export default function Edit({attributes, setAttributes}) {
 						</a>
 						<div>
 							<label>Button Text: </label>
-							<input type="text" onChange={(event) => updateImageCard(imageCard, 'buttonText', event.target.value)}/>
+							<input type="text" value={buttonText}
+										 onChange={(event) => updateImageCard(imageCard, 'buttonText', event.target.value)}/>
 						</div>
 						<div>
 							<label>Button Link: </label>
-							<input type="text"/>
+							<input type="text" value={buttonLink}
+										 onChange={(event) => updateImageCard(imageCard, 'buttonLink', event.target.value)}/>
 						</div>
 					</div>
 				</div>
@@ -92,7 +95,14 @@ export default function Edit({attributes, setAttributes}) {
 	};
 
 	return (
-			<p {...useBlockProps()} className="block-container">
+			<div {...useBlockProps()} className="block-container">
+				<div>
+					{imageCards && imageCards.length ?
+							<input className="headline" type="text" value={headline} onChange={(event) => setAttributes({
+								...attributes,
+								headline: event.target.value
+							})}/> : false}
+				</div>
 				<div className="image-cards">
 					{imageCards.map(createImageCard(setAttributes))}
 				</div>
@@ -100,12 +110,15 @@ export default function Edit({attributes, setAttributes}) {
 					<input type="file" style={{display: 'none'}} id="inputFile" accept="image/*" onChange={(event) => {
 						event.preventDefault();
 						const image = event.target.files[0];
-						setAttributes({imageCards: [...imageCards, {id: imageCards.length + 1, url: URL.createObjectURL(image)}]});
+						setAttributes({
+							...attributes,
+							imageCards: [...imageCards, {id: imageCards.length + 1, url: URL.createObjectURL(image)}]
+						});
 					}}/>
 					<button className="custom-button" onClick={() => document.querySelector('#inputFile').click()}>
 						Upload Image
 					</button>
 				</div>
-			</p>
+			</div>
 	);
 }

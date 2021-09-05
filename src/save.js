@@ -42,7 +42,7 @@ export default function save({attributes}) {
 						} = imageCard;
 
 						return (
-								<div>
+								<div className="image-card">
 									<div className="image-content">
 										<img src={url}/>
 										<div className="overlay">

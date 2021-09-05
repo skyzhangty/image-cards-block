@@ -56,7 +56,7 @@ export default function Edit({attributes, setAttributes}) {
 		}
 
 		return (
-				<div>
+				<div className="image-card">
 					<div className="image-content">
 						<img src={url}/>
 						<div className="overlay">
